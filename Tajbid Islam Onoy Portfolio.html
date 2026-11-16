@@ -1,0 +1,699 @@
+<!-- Chosen Palette: Minimalist Slate & Sky Accent -->
+<!-- Application Structure Plan: Single-page responsive portfolio featuring a sticky navigation bar, hero introduction with profile visual, about & experience metrics, categorized skills grid, filterable project showcase with interactive case study modals, and a direct contact section with one-click email copy and form feedback. -->
+<!-- Visualization & Content Choices: Structured HTML/CSS with Tailwind CSS and Font Awesome icons for clean typography, responsive cards, interactive category filtering, and modal previews. No SVG or Mermaid JS used. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tajbid Islam Onoy | Student, Videographer & Director</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        dark: {
+                            bg: '#0a0a0c',
+                            card: '#131316',
+                            border: '#222226'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-slate-100 antialiased selection:bg-primary-500 selection:text-white transition-colors duration-300">
+
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-slate-50/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-transparent">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <a href="#home" class="flex items-center gap-2.5 group">
+                    <div class="w-9 h-9 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center font-display font-bold text-lg tracking-tight transition-transform group-hover:scale-105">
+                        TI
+                    </div>
+                    <span class="font-display font-bold text-lg tracking-tight text-slate-900 dark:text-white">
+                        Tajbid Islam Onoy<span class="text-primary-500">.</span>
+                    </span>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">About</a>
+                    <a href="#skills" class="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">Skills</a>
+                    <a href="#projects" class="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">Projects</a>
+                    <a href="#contact" class="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">Contact</a>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 dark:text-slate-400 dark:hover:text-white dark:hover:bg-dark-card transition-colors">
+                        <i id="theme-icon" class="fa-solid fa-moon text-base"></i>
+                    </button>
+                    
+                    <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-xl bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 transition-all shadow-sm">
+                        Let's Talk
+                    </a>
+
+                    <button id="mobile-menu-btn" aria-label="Open Navigation Menu" class="md:hidden p-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-200/70 dark:hover:bg-dark-card transition-colors">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-card border-b border-slate-200 dark:border-dark-border px-4 pt-2 pb-6 space-y-2 shadow-lg">
+            <a href="#about" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60">About</a>
+            <a href="#skills" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60">Skills</a>
+            <a href="#projects" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60">Projects</a>
+            <a href="#contact" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60">Contact</a>
+            <div class="pt-2 px-4">
+                <a href="#contact" class="mobile-link flex items-center justify-center w-full py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium text-sm">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-medium">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        Available for creative & freelance projects
+                    </div>
+
+                    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
+                        Capturing stories through <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-indigo-500 dark:from-primary-400 dark:to-indigo-400">visuals & web.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Hi, I'm <strong class="font-semibold text-slate-900 dark:text-slate-200">Tajbid Islam Onoy</strong>—a Student, creative Videographer, and Director passionate about visual storytelling, engaging video production, and modern web design.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#projects" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 font-medium text-sm transition-all shadow-sm hover:shadow">
+                            View Selected Work
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#about" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white dark:bg-dark-card text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-dark-border hover:border-slate-300 dark:hover:border-slate-700 font-medium text-sm transition-all">
+                            More About Me
+                        </a>
+                    </div>
+
+                    <div class="pt-4 flex items-center justify-center lg:justify-start gap-5 text-slate-500 dark:text-slate-400">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-slate-900 dark:hover:text-white transition-colors text-lg flex items-center gap-1.5">
+                            <i class="fa-brands fa-facebook"></i>
+                            <span class="text-xs font-medium">Tajbid islam</span>
+                        </a>
+                        <a href="mailto:onoyby@gmail.com" aria-label="Email" class="hover:text-slate-900 dark:hover:text-white transition-colors text-lg">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-72 sm:w-80 lg:w-full max-w-sm">
+                        <div class="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-primary-500/20 via-indigo-500/10 to-transparent blur-2xl"></div>
+                        
+                        <div class="relative rounded-3xl overflow-hidden bg-white dark:bg-dark-card border border-slate-200/80 dark:border-dark-border p-3 shadow-xl">
+                            <img 
+                                src="11412_2.jpg" 
+                                alt="Tajbid Islam Onoy Portrait" 
+                                onerror="this.onerror=null;this.src='https://placehold.co/600x700/1e293b/f8fafc?text=Tajbid+Islam+Onoy';"
+                                class="w-full h-80 sm:h-96 object-cover object-top rounded-2xl"
+                            >
+                            <div class="mt-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-dark-bg border border-slate-100 dark:border-dark-border flex items-center justify-between">
+                                <div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Based in</p>
+                                    <p class="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-1.5">
+                                        <i class="fa-solid fa-location-dot text-primary-500 text-xs"></i>
+                                        Jamalpur, Dhaka
+                                    </p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Experience</p>
+                                    <p class="text-sm font-semibold text-slate-900 dark:text-white">2 Years</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 sm:py-28 bg-white dark:bg-dark-card/50 border-y border-slate-200/70 dark:border-dark-border">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    <div class="lg:col-span-5 space-y-4">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">About Me</span>
+                        <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+                            Blending visual storytelling with creative direction.
+                        </h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                            Every frame and every line of code tells a story. I focus on crafting meaningful visual content and clean web experiences.
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-4 pt-4">
+                            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-dark-bg border border-slate-200/60 dark:border-dark-border">
+                                <p class="font-display text-2xl font-bold text-slate-900 dark:text-white">2+</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Years Active</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-dark-bg border border-slate-200/60 dark:border-dark-border">
+                                <p class="font-display text-2xl font-bold text-slate-900 dark:text-white">15+</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Video Projects</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-dark-bg border border-slate-200/60 dark:border-dark-border">
+                                <p class="font-display text-2xl font-bold text-slate-900 dark:text-white">100%</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Dedication</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-8">
+                        <div class="space-y-4 text-slate-600 dark:text-slate-300 text-base leading-relaxed">
+                            <p>
+                                I am Tajbid Islam Onoy, a dedicated student alongside being a passionate videographer and director based in Jamalpur, Dhaka. Over the past 2 years, I have been exploring the art of visual storytelling, directing creative video projects, and learning web technologies like HTML.
+                            </p>
+                            <p>
+                                Whether behind the camera framing a shot or building clean web pages, I love bringing creative concepts to life and continuously learning new skills.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4 pt-2">
+                            <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-900 dark:text-white">Journey & Highlights</h3>
+                            
+                            <div class="space-y-3">
+                                <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-dark-bg border border-slate-200/60 dark:border-dark-border flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div>
+                                        <h4 class="font-semibold text-slate-900 dark:text-white">Videographer & Creative Director</h4>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">Freelance & Independent • Jamalpur, Dhaka</p>
+                                    </div>
+                                    <span class="inline-flex self-start sm:self-center px-3 py-1 rounded-full text-xs font-medium bg-slate-200/70 dark:bg-dark-card text-slate-700 dark:text-slate-300">
+                                        2 Years Experience
+                                    </span>
+                                </div>
+
+                                <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-dark-bg border border-slate-200/60 dark:border-dark-border flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div>
+                                        <h4 class="font-semibold text-slate-900 dark:text-white">Student & Web Enthusiast</h4>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">Academic Studies & HTML Web Development</p>
+                                    </div>
+                                    <span class="inline-flex self-start sm:self-center px-3 py-1 rounded-full text-xs font-medium bg-slate-200/70 dark:bg-dark-card text-slate-700 dark:text-slate-300">
+                                        Present
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl space-y-3 mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">Capabilities</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+                    Skills & Creative Stack
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-base">
+                    The core creative and technical skills I use to direct videos, shoot compelling visuals, and build web pages.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-dark-card border border-slate-200/80 dark:border-dark-border hover:border-primary-500/40 transition-all shadow-sm">
+                    <div class="w-11 h-11 rounded-2xl bg-primary-500/10 text-primary-600 dark:text-primary-400 flex items-center justify-center mb-5 text-lg">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white mb-2">Videography</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-5 leading-relaxed">
+                        Capturing high-quality visual footage with strong framing, lighting, and smooth camera movement.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">Videography</span>
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">Cinematography</span>
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">Video Editing</span>
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">Color Grading</span>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-dark-card border border-slate-200/80 dark:border-dark-border hover:border-primary-500/40 transition-all shadow-sm">
+                    <div class="w-11 h-11 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-5 text-lg">
+                        <i class="fa-solid fa-clapperboard"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white mb-2">Creative Direction</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-5 leading-relaxed">
+                        Guiding the creative vision from concept development and storyboarding to final production.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">Director</span>
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">Storytelling</span>
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">Concept Planning</span>
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">Scene Setup</span>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-dark-card border border-slate-200/80 dark:border-dark-border hover:border-primary-500/40 transition-all shadow-sm">
+                    <div class="w-11 h-11 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-5 text-lg">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white mb-2">Web Development</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-5 leading-relaxed">
+                        Building structured, clean, and responsive web pages using foundational web technologies.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">HTML</span>
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">CSS</span>
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">Web Layout</span>
+                        <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">Portfolio Design</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 sm:py-28 bg-white dark:bg-dark-card/50 border-y border-slate-200/70 dark:border-dark-border">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                    <div class="space-y-3">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">Portfolio</span>
+                        <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+                            Selected Projects
+                        </h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-base max-w-xl">
+                            A showcase of my video production, direction, and web development work.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2" id="project-filters">
+                        <button data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-white dark:bg-white dark:text-slate-900 transition-all">
+                            All Work
+                        </button>
+                        <button data-filter="video" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-dark-bg dark:text-slate-400 dark:hover:text-white transition-all">
+                            Video & Direction
+                        </button>
+                        <button data-filter="web" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-dark-bg dark:text-slate-400 dark:hover:text-white transition-all">
+                            Web Projects
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projects-grid">
+                    
+                    <article data-category="video" class="project-card group rounded-3xl overflow-hidden bg-slate-50 dark:bg-dark-bg border border-slate-200/80 dark:border-dark-border flex flex-col justify-between transition-all hover:shadow-xl hover:-translate-y-1">
+                        <div>
+                            <div class="relative overflow-hidden aspect-[16/10] bg-slate-200 dark:bg-slate-800">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?auto=format&fit=crop&w=900&q=80" 
+                                    alt="Creative Video Production & Direction"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/800x500/0f172a/38bdf8?text=Video+Production';"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                >
+                                <div class="absolute top-3 left-3">
+                                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/90 dark:bg-dark-bg/90 text-slate-900 dark:text-white backdrop-blur-sm shadow-sm">
+                                        Video & Direction
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6 sm:p-7">
+                                <h3 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                    Creative Video Production & Direction
+                                </h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                                    Directed and filmed short films and promotional visual content, focusing on storytelling, framing, and engaging edits.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-2.5 py-1 text-xs rounded-md bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border text-slate-600 dark:text-slate-300">Videography</span>
+                                    <span class="px-2.5 py-1 text-xs rounded-md bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border text-slate-600 dark:text-slate-300">Direction</span>
+                                    <span class="px-2.5 py-1 text-xs rounded-md bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border text-slate-600 dark:text-slate-300">Storytelling</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-6 sm:px-7 pb-6 flex items-center justify-between pt-4 border-t border-slate-200/60 dark:border-dark-border">
+                            <button onclick="openProjectModal(0)" class="text-sm font-semibold text-slate-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 inline-flex items-center gap-1.5 transition-colors">
+                                Project Details <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </button>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                <i class="fa-brands fa-facebook text-lg"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article data-category="web" class="project-card group rounded-3xl overflow-hidden bg-slate-50 dark:bg-dark-bg border border-slate-200/80 dark:border-dark-border flex flex-col justify-between transition-all hover:shadow-xl hover:-translate-y-1">
+                        <div>
+                            <div class="relative overflow-hidden aspect-[16/10] bg-slate-200 dark:bg-slate-800">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=900&q=80" 
+                                    alt="Web Page Development"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/800x500/1e1b4b/818cf8?text=Web+Development';"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                >
+                                <div class="absolute top-3 left-3">
+                                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/90 dark:bg-dark-bg/90 text-slate-900 dark:text-white backdrop-blur-sm shadow-sm">
+                                        Web Development
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6 sm:p-7">
+                                <h3 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                    Web Page Development & Portfolio
+                                </h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                                    Designed and structured clean, responsive web pages using HTML and modern styling principles for personal and showcase use.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-2.5 py-1 text-xs rounded-md bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border text-slate-600 dark:text-slate-300">HTML</span>
+                                    <span class="px-2.5 py-1 text-xs rounded-md bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border text-slate-600 dark:text-slate-300">Web Structure</span>
+                                    <span class="px-2.5 py-1 text-xs rounded-md bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border text-slate-600 dark:text-slate-300">Responsive</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-6 sm:px-7 pb-6 flex items-center justify-between pt-4 border-t border-slate-200/60 dark:border-dark-border">
+                            <button onclick="openProjectModal(1)" class="text-sm font-semibold text-slate-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 inline-flex items-center gap-1.5 transition-colors">
+                                Project Details <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </button>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                <i class="fa-brands fa-facebook text-lg"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-3xl bg-white dark:bg-dark-card border border-slate-200/80 dark:border-dark-border p-6 sm:p-10 lg:p-12 shadow-sm">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+                    
+                    <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
+                        <div class="space-y-4">
+                            <span class="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">Contact</span>
+                            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+                                Let's create something amazing together.
+                            </h2>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                                Have a video project, creative collaboration, or web idea in mind? Reach out via email or connect with me on Facebook.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-dark-bg border border-slate-200/60 dark:border-dark-border flex items-center justify-between gap-3">
+                                <div class="flex items-center gap-3 overflow-hidden">
+                                    <div class="w-10 h-10 rounded-xl bg-primary-500/10 text-primary-600 dark:text-primary-400 flex items-center justify-center shrink-0">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </div>
+                                    <div class="truncate">
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Email Address</p>
+                                        <p id="email-text" class="text-sm font-semibold text-slate-900 dark:text-white truncate">onoyby@gmail.com</p>
+                                    </div>
+                                </div>
+                                <button onclick="copyEmail()" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors shrink-0">
+                                    <span id="copy-label">Copy</span>
+                                </button>
+                            </div>
+
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-slate-50 dark:bg-dark-bg border border-slate-200/60 dark:border-dark-border flex items-center justify-between gap-3 hover:border-primary-500/40 transition-colors">
+                                <div class="flex items-center gap-3 overflow-hidden">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </div>
+                                    <div class="truncate">
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Facebook</p>
+                                        <p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Tajbid islam</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-medium text-primary-600 dark:text-primary-400 shrink-0">Connect <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <form id="contact-form" class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
+                                    <input type="text" id="name" name="name" required placeholder="Your Name" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-dark-bg border border-slate-200 dark:border-dark-border text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+                                    <input type="email" id="email" name="email" required placeholder="you@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-dark-bg border border-slate-200 dark:border-dark-border text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="subject" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Project Type</label>
+                                <select id="subject" name="subject" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-dark-bg border border-slate-200 dark:border-dark-border text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all">
+                                    <option value="Videography">Videography & Filming</option>
+                                    <option value="Direction">Creative Direction / Short Film</option>
+                                    <option value="Web Development">HTML Web Page Development</option>
+                                    <option value="Other">General Inquiry</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project or idea..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-dark-bg border border-slate-200 dark:border-dark-border text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 font-semibold text-sm transition-all shadow-sm">
+                                Send Message
+                                <i class="fa-regular fa-paper-plane text-xs"></i>
+                            </button>
+
+                            <div id="form-feedback" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-sm flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>Thank you! Your message has been received. I'll get back to you soon.</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200/70 dark:border-dark-border py-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+            <p>&copy; <span id="year"></span> Tajbid Islam Onoy. All rights reserved.</p>
+            <div class="flex items-center gap-6">
+                <a href="#home" class="hover:text-slate-900 dark:hover:text-white transition-colors">Home</a>
+                <a href="#about" class="hover:text-slate-900 dark:hover:text-white transition-colors">About</a>
+                <a href="#projects" class="hover:text-slate-900 dark:hover:text-white transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-slate-900 dark:hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
+        <div class="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-dark-border">
+                <span id="modal-category" class="text-xs font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">Category</span>
+                <button onclick="closeProjectModal()" aria-label="Close modal" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
+                <img id="modal-image" src="" alt="Project Preview" class="w-full h-56 sm:h-64 object-cover rounded-2xl bg-slate-100 dark:bg-slate-800">
+                <div>
+                    <h3 id="modal-title" class="font-display text-2xl font-bold text-slate-900 dark:text-white mb-2">Project Title</h3>
+                    <p id="modal-description" class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed"></p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-dark-bg border border-slate-200/60 dark:border-dark-border text-sm">
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Role</p>
+                        <p id="modal-role" class="font-semibold text-slate-900 dark:text-white mt-0.5"></p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Key Focus</p>
+                        <p id="modal-outcome" class="font-semibold text-emerald-600 dark:text-emerald-400 mt-0.5"></p>
+                    </div>
+                </div>
+                <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const htmlEl = document.documentElement;
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlEl.classList.add('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlEl.classList.toggle('dark');
+            const isDark = htmlEl.classList.contains('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            themeIcon.className = isDark ? 'fa-solid fa-sun text-base' : 'fa-solid fa-moon text-base';
+        });
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            mobileMenuIcon.className = isHidden ? 'fa-solid fa-bars text-lg' : 'fa-solid fa-xmark text-lg';
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.className = 'fa-solid fa-bars text-lg';
+            });
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('border-slate-200/80', 'dark:border-dark-border', 'shadow-sm');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('border-slate-200/80', 'dark:border-dark-border', 'shadow-sm');
+                navbar.classList.add('border-transparent');
+            }
+        });
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-slate-900');
+                    b.classList.add('bg-slate-100', 'text-slate-600', 'dark:bg-dark-bg', 'dark:text-slate-400');
+                });
+                btn.classList.remove('bg-slate-100', 'text-slate-600', 'dark:bg-dark-bg', 'dark:text-slate-400');
+                btn.classList.add('bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-slate-900');
+
+                const filterValue = btn.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        const projectData = [
+            {
+                category: 'Video & Direction',
+                title: 'Creative Video Production & Direction',
+                image: 'https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?auto=format&fit=crop&w=900&q=80',
+                description: 'Directed and shot creative short films and promotional video projects. Handled concept planning, camera framing, lighting, and visual storytelling from start to finish.',
+                role: 'Videographer & Director',
+                outcome: 'Engaging Visual Storytelling',
+                tags: ['Videography', 'Direction', 'Storytelling', 'Video Production']
+            },
+            {
+                category: 'Web Development',
+                title: 'Web Page Development & Portfolio',
+                image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=900&q=80',
+                description: 'Built clean and structured web pages using HTML. Focused on organized layouts, easy navigation, and responsive presentation across devices.',
+                role: 'Web Creator',
+                outcome: 'Clean & Responsive Layout',
+                tags: ['HTML', 'Web Structure', 'Responsive Design']
+            }
+        ];
+
+        const modal = document.getElementById('project-modal');
+
+        function openProjectModal(index) {
+            const project = projectData[index];
+            if (!project) return;
+
+            document.getElementById('modal-category').textContent = project.category;
+            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-image').src = project.image;
+            document.getElementById('modal-description').textContent = project.description;
+            document.getElementById('modal-role').textContent = project.role;
+            document.getElementById('modal-outcome').textContent = project.outcome;
+
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = project.tags.map(tag => 
+                `<span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-dark-bg text-slate-700 dark:text-slate-300">${tag}</span>`
+            ).join('');
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeProjectModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeProjectModal();
+        });
+
+        function copyEmail() {
+            const emailText = document.getElementById('email-text').textContent;
+            const copyLabel = document.getElementById('copy-label');
+            
+            const tempInput = document.createElement('textarea');
+            tempInput.value = emailText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                copyLabel.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyLabel.textContent = 'Copy';
+                }, 2000);
+            } catch (err) {
+                copyLabel.textContent = 'Failed';
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        const contactForm = document.getElementById('contact-form');
+        const formFeedback = document.getElementById('form-feedback');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formFeedback.classList.remove('hidden');
+            contactForm.reset();
+            setTimeout(() => {
+                formFeedback.classList.add('hidden');
+            }, 6000);
+        });
+    </script>
+</body>
+</html>
